@@ -10,6 +10,10 @@ app.get('/', function(req,res){
   res.send('Welcome');
 });
 
+app.get('/users', function(req,res){
+  res.send(JSON.stringify(users));
+});
+
 app.listen(8080, function(){
   console.log('app is listening on port 8080!');
 });
