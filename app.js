@@ -11,7 +11,13 @@ app.get('/', function(req,res){
 });
 
 app.get('/users', function(req,res){
-  res.send(JSON.stringify(users));
+
+  var name = req.query.name;
+  var filteredUsers = users.filter(function(user){
+    return user.name === name;
+  });
+
+  res.send(JSON.stringify(filteredUsers));
 });
 
 app.get('/users/:id', function(req,res){
