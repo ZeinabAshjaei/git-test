@@ -52,6 +52,21 @@ app.delete('/users/:id', function(req,res){
   
 });
 
+app.put('/users/:id', function(req,res){
+   var myId = parseInt(req.params.id);
+   var upUserName= req.body.name;
+   console.log(upUserName);
+
+  users.forEach(function(user){
+    if(user.id === myId){
+      user.name = upUserName; 
+    }
+  });
+
+  res.status(202).send();
+  
+});
+
 app.listen(8080, function(){
   console.log('app is listening on port 8080!');
 });
