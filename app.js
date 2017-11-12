@@ -1,6 +1,9 @@
 var ex = require('express');
 var app = ex();
 
+var bodyParser = require('body-parser')
+app.use( bodyParser.json() );
+
 var users = [
   {id:88, name:'Zeinab'},
   {id:77, name:'Farshad'}
@@ -24,6 +27,12 @@ app.get('/users/:id', function(req,res){
   } else {
     res.status(404).send(new Error('the user with id ' + id + ' is not found').toString());
   }
+});
+
+app.post('/users', function(req,res){
+  var user = req.body;
+  users.push(user);
+  res.status(200).send(JSON.stringify(user));
 });
 
 app.listen(8080, function(){
