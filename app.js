@@ -20,7 +20,7 @@ app.get('/users', function(req,res){
     return user.name === name;
   });
 
-  res.send(JSON.stringify(filteredUsers));
+  res.send(Object.keys(req.body).length === 0 ? JSON.stringify(users) : JSON.stringify(filteredUsers));
 });
 
 app.get('/users/:id', function(req,res){
@@ -39,6 +39,17 @@ app.post('/users', function(req,res){
   var myUser = req.body;
   users.push(user);
   res.status(200).send(JSON.stringify(user));
+});
+
+app.delete('/users/:id', function(req,res){
+  var id = parseInt(req.params.id);
+  users = users.filter(function(user){
+    console.log(user);
+    return user.id !== id;
+  });
+
+  res.status(202).send();
+  
 });
 
 app.listen(8080, function(){
