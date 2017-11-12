@@ -10,6 +10,10 @@ app.get('/', function(req,res){
   res.send('Welcome');
 });
 
+app.get('/users', function(req,res){
+  res.send(JSON.stringify(users));
+});
+
 app.get('/users/:id', function(req,res){
   var id = req.params.id;
   var user = users.filter(function(user){
