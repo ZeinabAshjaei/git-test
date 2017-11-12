@@ -36,7 +36,7 @@ app.get('/users/:id', function(req,res){
 });
 
 app.post('/users', function(req,res){
-  var yourUser = req.body;
+  var myUser = req.body;
   users.push(user);
   res.status(200).send(JSON.stringify(user));
 });
